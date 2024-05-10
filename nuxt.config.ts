@@ -13,9 +13,8 @@ export default defineNuxtConfig({
 
   ui: {},
 
-  mongoose: {
-    uri: process.env.MONGODB_URI,
-    modelsDir: 'server/models'
+  nuxtServerUtils: {
+    mongodbUri: process.env.MONGODB_URI
   },
 
   auth: {
