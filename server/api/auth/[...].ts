@@ -3,12 +3,13 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { User } from '~/server/models/User.model';
 
 const getUser = async (id: string) => {
-  const user = await User.findById({ id });
+  const user = await User.findById(id);
   return user?.toJSON();
 }
 
 export default NuxtAuthHandler({
   secret: useRuntimeConfig().auth.secret,
+  pages: { signIn: "/auth/signin" },
   providers: [
     // @ts-ignore
     CredentialsProvider.default({
