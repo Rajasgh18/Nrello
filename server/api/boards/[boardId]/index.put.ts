@@ -3,12 +3,13 @@ import BoardSchema from '~/schemas/Board.schema';
 
 export default defineEventHandler(async (event) => {
 
+  const user = event.context.user;
+
   const body = await readBody(event);
-  console.log(body)
-  const data = Validator.validateSchema(BoardSchema, body);
+  Validator.validateSchema(BoardSchema.partial(), body);
 
   const boardId = getRouterParam(event, 'boardId');
 
-  const board = Board.findOneAndUpdate({ _id: boardId, owner: "663e2490729cb600968b17cc" }, { $set: body });
+  const board = Board.findOneAndUpdate({ _id: boardId, owner: user._id }, { $set: body });
   return board;
 })
