@@ -3,10 +3,10 @@ import CardSchema from '~/schemas/Card.schema';
 
 export default defineEventHandler(async (event) => {
 
-  const body = readBody(event);
+  const body = await readBody(event);
   const user = event.context.user;
   const listId = getRouterParam(event, 'listId');
-
+  console.log(body)
   Validator.validateSchema(CardSchema, body);
 
   const card = await Card.create({
