@@ -10,7 +10,7 @@ export interface CardDocument extends Document {
 };
 
 const cardSchema = new Schema({
-    name: {
+    title: {
         type: String,
         required: true,
     },
