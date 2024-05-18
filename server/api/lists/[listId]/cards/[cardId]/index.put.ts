@@ -4,7 +4,7 @@ import CardSchema from '~/schemas/Card.schema';
 export default defineEventHandler(async (event) => {
 
   const user = event.context.user;
-  const body = readBody(event);
+  const body = await readBody(event);
   const cardId = getRouterParam(event, "cardId");
   const listId = getRouterParam(event, "listId");
 
